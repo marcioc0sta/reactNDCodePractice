@@ -12,10 +12,8 @@ class RegisterUsersForm extends Component {
 
   userIsUnique = currentUserName => {
     const { users } = this.props;
-    console.log(users)
     for (let user of users) {
-      if (user.username === currentUserName) {
-        console.log(currentUserName)
+      if (user.userName === currentUserName) {
         return true;
       }
     }
@@ -26,7 +24,7 @@ class RegisterUsersForm extends Component {
     event.preventDefault();
     const { user } = this.state;
     const { OnRegisterUser } = this.props;
-    const isUnique = this.userIsUnique(user);
+    const isUnique = this.userIsUnique(user.username);
 
     if (!isUnique) OnRegisterUser(user)
 

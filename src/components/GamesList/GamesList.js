@@ -7,10 +7,10 @@ class GamesList extends Component {
     users: []
   }
 
-  registerUser = user => {
+  OnRegisterUser = user => {
     user.playedGames = 0;
     this.setState(currentState => ({
-      users: [...currentState, user],
+      users: [...currentState.users, user],
     }));
   };
 
@@ -19,7 +19,7 @@ class GamesList extends Component {
       <div className="game-list">
         <RegisterUsersForm 
           users={this.state.users} 
-          OnRegisterUser={this.registerUser}
+          OnRegisterUser={this.OnRegisterUser}
         />
       </div>
     )
