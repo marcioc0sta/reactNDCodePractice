@@ -14,7 +14,7 @@ class GamesList extends Component {
     }));
   };
 
-  renrder() {
+  render() {
     return(
       <div className="game-list">
         <RegisterUsersForm 
