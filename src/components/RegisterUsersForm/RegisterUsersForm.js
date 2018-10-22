@@ -56,8 +56,6 @@ class RegisterUsersForm extends Component {
     const { firstName, lastName, userName } = this.state.user;
     const { isUnique } = this.state;
 
-    console.log(this.isFormEmpy())
-
     return (
       <form onSubmit={this.SubmitForm} >
         <div>
