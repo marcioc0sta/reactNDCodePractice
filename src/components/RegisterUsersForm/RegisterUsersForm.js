@@ -24,9 +24,11 @@ class RegisterUsersForm extends Component {
     event.preventDefault();
     const { user } = this.state;
     const { OnRegisterUser } = this.props;
-    const isUnique = this.userIsUnique(user.username);
+    const isUnique = this.userIsUnique(user.userName);
 
-    if (!isUnique) OnRegisterUser(user)
+    if (!isUnique) {
+      OnRegisterUser(user)
+    }
 
     this.setState(() => ({
       isUnique,
@@ -45,8 +47,16 @@ class RegisterUsersForm extends Component {
     }));
   }
 
+  isFormEmpy() {
+    const { firstName, lastName, userName, } = this.state.user;
+    return firstName === '' || lastName === '' || userName === '';
+  }
+
   render() {
-    const { firstName, lastName, username } = this.state.user;
+    const { firstName, lastName, userName } = this.state.user;
+    const { isUnique } = this.state;
+
+    console.log(this.isFormEmpy())
 
     return (
       <form onSubmit={this.SubmitForm} >
@@ -71,14 +81,17 @@ class RegisterUsersForm extends Component {
         <div>
           <input 
             name="userName"
-            value={username}
+            value={userName}
             placeholder="Username"
             type="text"
             onChange={this.handleChange}
           />
         </div>
         <div>
-          <button>Add</button>
+          {!isUnique ? 
+            (<button disabled={this.isFormEmpy()}>Add</button>) : 
+            <p>The username is Already used</p>
+          }
         </div>
       </form>
     );
